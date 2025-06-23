@@ -1,156 +1,146 @@
-PRODIGY_DS_02_CustomerClustering
-Customer Segmentation using K-Means Clustering
-Project Overview
-This project implements a K-Means clustering algorithm to segment retail store customers based on their purchasing behavior. By analyzing features such as annual income and spending score, we identify distinct customer groups, enabling targeted marketing strategies and improved business insights. This is the second task for the Prodigy InfoTech Data Science Internship.
+# PRODIGY\_DS\_02\_CustomerClustering
 
-1. Problem Statement
-In the competitive retail landscape, understanding customer behavior is paramount for effective marketing and business strategy. Retail stores often collect vast amounts of transactional data, but without proper analysis, this data remains underutilized. The challenge is to identify distinct groups of customers based on their purchasing habits (represented by annual income and spending score) to enable targeted marketing campaigns, personalized recommendations, and improved customer relationship management.
+## Customer Segmentation using K-Means Clustering
 
-Objective: To apply the K-Means clustering algorithm to segment retail store customers, allowing the business to gain insights into different customer archetypes and develop tailored strategies for each segment.
+### 🌟 Project Overview
 
-2. Dataset
-The project utilizes the Mall Customers Segmentation Dataset, available on Kaggle.
+This project implements a K-Means clustering algorithm to segment retail store customers based on their purchasing behavior. By analyzing features such as **Annual Income** and **Spending Score**, we identify distinct customer groups, enabling targeted marketing strategies and improved business insights.
 
-Dataset Link: https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial-in-python
+This project was developed as the **second task** of the **Prodigy InfoTech Data Science Internship**.
 
-Dataset Description:
+---
 
-The dataset typically includes the following columns:
+### 📉 1. Problem Statement
 
-Column Name
+In the competitive retail landscape, understanding customer behavior is critical for designing effective marketing and business strategies. Retailers gather large volumes of data, but much of it remains underutilized.
 
-Description
+**Goal:** Identify distinct groups of customers based on their purchasing habits (annual income and spending score) to enable:
 
-CustomerID
+* Personalized marketing
+* Customer loyalty strategies
+* Data-driven business decision-making
 
-Unique ID for each customer.
+**Objective:** Apply the **K-Means clustering algorithm** to group similar customers and uncover actionable insights.
 
-Gender
+---
 
-Male or Female.
+### 📊 2. Dataset
 
-Age
+**Source:** [Kaggle - Customer Segmentation](https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial-in-python)
 
-Age of the customer.
+#### Dataset Features:
 
-Annual Income (k$)
+| Column Name              | Description                                             |
+| ------------------------ | ------------------------------------------------------- |
+| `CustomerID`             | Unique identifier for each customer                     |
+| `Gender`                 | Customer gender (Male/Female)                           |
+| `Age`                    | Customer age                                            |
+| `Annual Income (k$)`     | Customer's annual income (in thousands of USD)          |
+| `Spending Score (1-100)` | Mall-assigned score reflecting customer spending habits |
 
-Customer's annual income (in thousands of USD).
+**Features Used for Clustering:**
 
-Spending Score (1-100)
+* `Annual Income (k$)`
+* `Spending Score (1-100)`
 
-A score assigned by the mall (1–100) based on behavior.
+---
 
-For this project, Annual Income (k$) and Spending Score (1-100) are the primary features used for clustering.
+### 🧱 3. Technologies Used
 
-3. Technologies Used
-Python: Programming language for data analysis and modeling.
+* **Python** – Data processing and ML modeling
+* **Pandas** – Data manipulation
+* **NumPy** – Numerical computations
+* **Matplotlib & Seaborn** – Visualizations
+* **Scikit-learn** – Clustering and preprocessing (KMeans, StandardScaler)
 
-Pandas: For data manipulation and analysis.
+---
 
-NumPy: For numerical operations.
+### ⚙️ 4. Methodology
 
-Matplotlib: For creating static, animated, and interactive visualizations.
+1. **Data Loading:** Read CSV and handle errors
+2. **Exploration:** Head, Info, Null checks, Stats summary
+3. **Feature Selection:** Choose income and spending score
+4. **Scaling:** Use `StandardScaler` for normalization
+5. **Determine Optimal K:** Apply **Elbow Method** (WCSS vs K)
+6. **Apply K-Means:** Use optimal K=5 to train model
+7. **Label Clusters:** Assign and store cluster IDs
+8. **Visualization:** 2D Scatter plot colored by cluster
+9. **Cluster Analysis:** Mean values grouped by cluster
 
-Seaborn: For statistical data visualization based on Matplotlib.
+---
 
-Scikit-learn: For machine learning algorithms, specifically K-Means clustering and StandardScaler.
+### 📊 5. Results & Visuals
 
-4. Methodology
-The project follows these key steps:
+#### 📈 Elbow Method:
 
-Data Loading: The Mall_Customers.csv dataset is loaded into a Pandas DataFrame. Error handling is included to ensure the dataset is found.
+![Elbow Plot](elbow_plot.png)
 
-Initial Data Exploration: Basic checks like df.head(), df.info(), df.isnull().sum(), df.shape, and df.describe() are performed to understand the dataset's structure, types, and summary statistics.
+* The "elbow" at **K=5** shows the optimal number of clusters.
 
-Feature Selection: The relevant features, Annual Income (k$) and Spending Score (1-100), are selected for clustering.
+#### 🌐 Customer Segments:
 
-Feature Scaling: StandardScaler is applied to normalize the selected features. This is crucial for K-Means, as it relies on distance calculations, and unscaled features can lead to biased results.
+![Clusters Plot](customer_segments.png)
 
-Elbow Method for Optimal K: The Elbow Method is used to determine the optimal number of clusters (K). This involves calculating the Within-Cluster Sum of Squares (WCSS) for a range of K values (1 to 10) and plotting the results. The "elbow" point in the plot indicates the value of K where the decrease in WCSS begins to slow down significantly. For this dataset, K=5 is typically identified as the optimal number.
+* Clear separation of customer types based on behavior
 
-K-Means Clustering: The K-Means algorithm is applied with the chosen optimal K=5. Each customer is assigned a cluster label.
+---
 
-Visualization: A scatter plot is generated, displaying customers based on their annual income and spending score, with points colored according to their assigned cluster. This provides a clear visual representation of the segmented customer groups.
+### 🤝 6. Interpretation of Customer Segments
 
-Cluster Analysis and Interpretation: The mean values of Annual Income (k$), Spending Score (1-100), Age, and Gender are calculated for each cluster. These statistics are used to interpret the unique characteristics and behaviors of each customer segment, leading to actionable business insights.
+| Cluster   | Characteristics                  | Strategy                                    |
+| --------- | -------------------------------- | ------------------------------------------- |
+| Cluster 0 | High Income, High Spenders (VIP) | Premium services, loyalty perks             |
+| Cluster 1 | High Income, Low Spenders        | Targeted offers, identify needs             |
+| Cluster 2 | Low Income, High Spenders        | Promotions, discounts                       |
+| Cluster 3 | Low Income, Low Spenders         | Affordable pricing strategies               |
+| Cluster 4 | Avg. Income & Spenders           | General campaigns, up-selling opportunities |
 
-5. Results & Visuals
-The K-Means clustering algorithm successfully segments the customers into 5 distinct groups.
+(Note: Your actual cluster IDs may vary. Adjust interpretation based on output.)
 
-Elbow Method Plot:
-(Include a screenshot of your generated Elbow Method plot here)
+---
 
-[Image: Elbow Method plot showing WCSS vs. Number of Clusters, with an elbow around K=5]
+### 🚀 7. How to Run This Project
 
+#### 🔧 Clone the Repo
 
-This plot demonstrates the rationale behind choosing K=5, as the decrease in WCSS becomes less pronounced after this point.
-
-Customer Segments Scatter Plot:
-(Include a screenshot of your generated Customer Segments scatter plot here)
-
-[Image: Scatter plot of Annual Income vs. Spending Score, with points colored by their assigned cluster]
-
-
-This visualization clearly separates customers into visually distinct groups based on their income and spending habits.
-
-6. Interpretation of Customer Segments
-Based on the analysis of annual income and spending score, customers are segmented into the following distinct groups:
-
-Cluster X: High Income, High Spenders (VIP Customers)
-
-Characteristics: Customers with significantly high annual income and equally high spending scores.
-
-Rationale/Targeting: This is your most valuable segment. Focus on premium product offerings, exclusive loyalty programs, personalized luxury experiences, and retention strategies.
-
-Cluster Y: High Income, Low Spenders (Careful Spenders)
-
-Characteristics: Customers with high annual income but relatively low spending scores.
-
-Rationale/Targeting: These customers have purchasing power but are not utilizing it much at the mall. Strategies could involve enticing them with unique propositions, highlighting value, or understanding their unmet needs.
-
-Cluster Z: Low Income, High Spenders (Impulsive/Value Seekers)
-
-Characteristics: Customers with lower annual income but remarkably high spending scores.
-
-Rationale/Targeting: This group might be highly sensitive to promotions, discounts, or impulse purchases. Focus on value-for-money products, sales events, and essential product promotions.
-
-Cluster A: Low Income, Low Spenders (Budget-Conscious)
-
-Characteristics: Customers with both low annual income and low spending scores.
-
-Rationale/Targeting: This segment is highly budget-conscious. Marketing strategies should focus on essential goods, clearance sales, and affordable options.
-
-Cluster B: Average Income, Average Spenders (General Customer Base)
-
-Characteristics: Customers who fall in the middle range for both income and spending.
-
-Rationale/Targeting: This represents a significant portion of your customer base. They can be targeted with a broad range of products and general promotions. Understanding their specific preferences within this large group can lead to further sub-segmentation if needed.
-
-(Note: Replace X, Y, Z, A, B with the actual cluster numbers from your output as they can vary slightly with each run if random_state wasn't fixed for the final KMeans model, or if the interpretation mapping needs adjustment based on your specific cluster_summary table.)
-
-7. How to Run the Code
-To run this project locally, follow these steps:
-
-Clone the Repository (or Download):
-
+```bash
 git clone https://github.com/your-username/PRODIGY_DS_02_CustomerClustering.git
 cd PRODIGY_DS_02_CustomerClustering
+```
 
-(If you download, ensure all files are in one directory.)
+#### 📂 Download Dataset
 
-Download the Dataset:
+Download **Mall\_Customers.csv** from:
+[Kaggle Dataset Link](https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial-in-python)
 
-Download Mall_Customers.csv from Kaggle: https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial-in-python
+Place it in the same directory as your script.
 
-Place the Mall_Customers.csv file in the PRODIGY_DS_02_CustomerClustering directory (the same directory as the Python script).
+#### 📅 Install Required Libraries
 
-Install Required Libraries:
-Open your terminal or command prompt and run:
-
+```bash
 pip install pandas numpy matplotlib seaborn scikit-learn
+```
 
-Execute the Python Script:
-Run the main Python script from your terminal:
+#### 💻 Run the Script
 
+```bash
 python customer_segmentation_project.py
+```
+
+---
+
+### 🙌 8. Conclusion
+
+This project effectively segments customers using unsupervised machine learning, providing a foundation for data-driven marketing. Future improvements could include:
+
+* Adding more features (e.g., Age, Gender)
+* Using PCA for dimensionality reduction
+* Comparing K-Means with DBSCAN or Hierarchical Clustering
+
+---
+
+### 🌟 Author
+
+**Cheekati-saicharan**
+Intern @ Prodigy InfoTech
+Task: PRODIGY\_DS\_02\_CustomerClustering
